@@ -47,7 +47,7 @@ router.get('/browse', async (req: AuthenticatedRequest, res) => {
       ?.filter(h => !partneredUserIds.has(h.user_id))
       .map(h => ({
         user_id: h.user_id,
-        display_name: h.users_profiles.display_name,
+        display_name: (h.users_profiles as any)?.display_name || 'Unknown',
         habit_name: h.habit_name,
         category: h.category,
         privacy_setting: h.privacy_setting
